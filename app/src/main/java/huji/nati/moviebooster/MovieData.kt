@@ -1,5 +1,7 @@
 package huji.nati.moviebooster
 
+import java.io.Serializable
+
 data class MovieData(
     var title :String = "",
     var release_date:String = "",
@@ -7,4 +9,4 @@ data class MovieData(
     var original_language:String = "",
     var vote_average: String = "",
     var vote_count: String = ""
-) {}
+) : Serializable {}
