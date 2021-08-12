@@ -17,6 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
             minifyEnabled false
@@ -52,7 +53,7 @@ dependencies {
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.5")
 
     // Work Manager
-    implementation("androidx.work:work-runtime-ktx:2.5.0")
+    implementation "androidx.work:work-runtime-ktx:2.5.0"
 
     // Live Data
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'

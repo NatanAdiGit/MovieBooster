@@ -1,6 +1,7 @@
 package huji.nati.moviebooster.workers
 
 import android.content.Context
+import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import huji.nati.moviebooster.BuildConfig
@@ -43,13 +44,17 @@ class CallMostPopularMoviesWork(context: Context, workerParams : WorkerParameter
 
         try {
             val response = serverInterface.getTopRatedMovies().execute() // blocked until results
+            if (response.body() == null) {
+                Log.e("null", "null")
+            }
             val responseBody = response.body() ?: return Result.failure()
 
             // set the displayed movies to be the most popular movies according to server.
-            mainApp.setDisplayedMovieListToSP(responseBody)
+            mainApp.setDisplayedMovieListToSP(responseBody.results)
             return Result.success()
         }
         catch (e : Exception) {
+            Log.e("exception", e.toString())
             return Result.failure()
         }
     }

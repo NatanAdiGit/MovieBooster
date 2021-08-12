@@ -17,7 +17,7 @@ class MoviePreviewItemHolder(private val view: View) : RecyclerView.ViewHolder(v
      * sets the rating.
      */
     fun setRatingBar(rating:Float) {
-        ratingBar.rating = rating / 2
+        ratingBar.rating = rating / 2f
     }
 
     /**
@@ -25,5 +25,14 @@ class MoviePreviewItemHolder(private val view: View) : RecyclerView.ViewHolder(v
      */
     fun setImageView(path: String) {
         Glide.with(view).load(path).into(movieImage)
+    }
+
+    /**
+     * sets the releaseDate view.
+     */
+    fun setDateView(date:String) {
+        val split = date.split("-")
+        val newText = split[1] + "/" + split[0]
+        releaseDate.text = newText
     }
 }

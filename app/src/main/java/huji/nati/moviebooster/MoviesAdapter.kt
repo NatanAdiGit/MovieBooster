@@ -8,16 +8,20 @@ import huji.nati.moviebooster.ui.MoviePreviewItemHolder
 
 class MoviesAdapter : RecyclerView.Adapter<MoviePreviewItemHolder>() {
 
-    private val mainApp by lazy { MovieBoosterApp.instance}
+    private val movieList : MutableList<MovieData> = mutableListOf()
 
     private val generalImagesDirectoryPath by lazy {"https://image.tmdb.org/t/p/w500"}
 
     var onImageClickCallback : ((MovieData) -> Unit)?= null
 
+    fun setItems(items : List<MovieData>) {
+        movieList.clear()
+        movieList.addAll(items)
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
-        if (mainApp.displayedMoviesLiveData.value != null)
-            return 0
-        return mainApp.displayedMoviesLiveData.value!!.size
+        return movieList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviePreviewItemHolder {
@@ -29,24 +33,22 @@ class MoviesAdapter : RecyclerView.Adapter<MoviePreviewItemHolder>() {
     }
 
     override fun onBindViewHolder(holder: MoviePreviewItemHolder, position: Int) {
-        if (mainApp.displayedMoviesLiveData.value != null) {
-            val currentMovie = mainApp.displayedMoviesLiveData.value!![position]
+            val currentMovie = movieList[position]
 
             holder.movieTitle.text = currentMovie.title
-            holder.releaseDate.text = currentMovie.release_date
+
+            // set the release date.
+            holder.setDateView(currentMovie.release_date)
 
             // set the movie image
             holder.setImageView(generalImagesDirectoryPath + currentMovie.poster_path)
 
             // set the rating
-            holder.setRatingBar(currentMovie.vote_average.toFloat())
+            holder.setRatingBar(currentMovie.vote_average)
 
             holder.movieImage.setOnClickListener {
                 val callback = onImageClickCallback ?: return@setOnClickListener
                 callback(currentMovie)
             }
-
-        }
-
     }
 }

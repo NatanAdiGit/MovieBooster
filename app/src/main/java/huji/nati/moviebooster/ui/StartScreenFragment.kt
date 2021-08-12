@@ -1,6 +1,7 @@
 package huji.nati.moviebooster.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,8 @@ class StartScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        movieListViewModel.getPopularMoviesList()
+        view.findNavController().navigate(R.id.start_to_movie_list_action)
         movieListViewModel.displayedMoviesLiveData.observe(viewLifecycleOwner, Observer {
             view.findNavController().navigate(R.id.start_to_movie_list_action)
         })

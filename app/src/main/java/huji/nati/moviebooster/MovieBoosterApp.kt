@@ -46,7 +46,7 @@ class MovieBoosterApp : Application(){
 
     fun getDisplayedMovieListFromSP() : List<MovieData> {
         val gson = Gson()
-        val jsonInProcess: String = sp.getString("popular_movies_list", "")!!
+        val jsonInProcess: String = sp.getString("displayed_movie_list", "")!!
         val type: Type = object : TypeToken<MutableList<MovieData>>() {}.type
         if (jsonInProcess != "") {
             return gson.fromJson(jsonInProcess, type)

@@ -1,5 +1,6 @@
 package huji.nati.moviebooster
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,11 +37,13 @@ class MovieListViewModel : ViewModel() {
 
         val liveData = MovieBoosterApp.workManager.getWorkInfoByIdLiveData(workRequest.id)
         // todo - un observe
-        val popularMovieWorkObserver = liveData.observeForever{ workInfo ->
+        liveData.observeForever{ workInfo ->
             if (workInfo == null)
                 return@observeForever
             if(workInfo.state == WorkInfo.State.SUCCEEDED) {
                 _displayedMoviesLiveData.value = mainApp.getDisplayedMovieListFromSP()
+                Log.e("size", _displayedMoviesLiveData.value!!.size.toString())
+                adapter.setItems(_displayedMoviesLiveData.value!!)
             }
         }
     }

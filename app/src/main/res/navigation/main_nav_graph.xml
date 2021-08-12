@@ -1,50 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/startScreenFragment">
-
     <fragment
         android:id="@+id/startScreenFragment"
         android:name="huji.nati.moviebooster.ui.StartScreenFragment"
-        android:label="StartScreenFragment" >
+        android:label="start_screen_fragment"
+        tools:layout="@layout/start_screen_fragment" >
         <action
             android:id="@+id/start_to_movie_list_action"
-            app:destination="@id/movieListFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:destination="@id/movieListFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieListFragment"
         android:name="huji.nati.moviebooster.ui.MovieListFragment"
-        android:label="MovieListFragment" >
-        <action
-            android:id="@+id/movie_list_tp_sinflr_movie_action"
-            app:destination="@id/singleMovieFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
-        <action
-            android:id="@+id/movie_list_to_search_action"
-            app:destination="@id/searchFragment"
-            app:enterAnim="@android:anim/accelerate_decelerate_interpolator"
-            app:exitAnim="@android:anim/accelerate_decelerate_interpolator" />
-    </fragment>
-    <fragment
-        android:id="@+id/singleMovieFragment"
-        android:name="huji.nati.moviebooster.ui.SingleMovieFragment"
-        android:label="SingleMovieFragment" >
-        <action
-            android:id="@+id/single_movie_to_search_action"
-            app:destination="@id/searchFragment"
-            app:enterAnim="@android:anim/accelerate_decelerate_interpolator"
-            app:exitAnim="@android:anim/accelerate_decelerate_interpolator" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="huji.nati.moviebooster.ui.SearchFragment"
-        android:label="SearchFragment" >
-        <action
-            android:id="@+id/search_to_movie_lust_action"
-            app:destination="@id/movieListFragment" />
-    </fragment>
+        android:label="movie_list_fragment"
+        tools:layout="@layout/movie_list_fragment" />
 </navigation>
