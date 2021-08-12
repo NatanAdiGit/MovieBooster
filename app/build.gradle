@@ -54,6 +54,12 @@ dependencies {
     // Work Manager
     implementation("androidx.work:work-runtime-ktx:2.5.0")
 
+    // Live Data
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+
+    // View Model
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")
 
@@ -70,4 +76,8 @@ dependencies {
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.0"))
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }

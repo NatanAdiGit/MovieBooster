@@ -1,7 +1,8 @@
-package huji.nati.moviebooster
+package huji.nati.moviebooster.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import huji.nati.moviebooster.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
