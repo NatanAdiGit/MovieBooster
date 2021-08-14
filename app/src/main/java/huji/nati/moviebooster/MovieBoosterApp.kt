@@ -2,6 +2,7 @@ package huji.nati.moviebooster
 
 import android.app.Application
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -19,6 +20,7 @@ import java.lang.reflect.Type
 class MovieBoosterApp : Application(){
 
     private lateinit var sp : SharedPreferences
+    private lateinit var gson : Gson
 
     companion object {
         lateinit var instance: MovieBoosterApp
@@ -26,26 +28,29 @@ class MovieBoosterApp : Application(){
 
         lateinit var workManager : WorkManager
             private set
+
+        lateinit var imagesDirectoryPath : String
     }
 
     override fun onCreate() {
         super.onCreate()
+
         instance = this
         workManager = WorkManager.getInstance(this)
         sp = PreferenceManager.getDefaultSharedPreferences(this)
+        gson = Gson()
+        imagesDirectoryPath = "https://image.tmdb.org/t/p/w500"
 
     }
 
 
     fun setDisplayedMovieListToSP(newList : List<MovieData>) {
-        val gson = Gson()
         val editor : SharedPreferences.Editor = sp.edit()
         editor.putString("displayed_movie_list", gson.toJson(newList))
         editor.apply()
     }
 
     fun getDisplayedMovieListFromSP() : List<MovieData> {
-        val gson = Gson()
         val jsonInProcess: String = sp.getString("displayed_movie_list", "")!!
         val type: Type = object : TypeToken<MutableList<MovieData>>() {}.type
         if (jsonInProcess != "") {
@@ -53,6 +58,23 @@ class MovieBoosterApp : Application(){
         }
         return listOf()
     }
+
+    fun setSingleMovieToDisplayToSP(movieData: MovieData) {
+        val editor : SharedPreferences.Editor = sp.edit()
+        editor.putString("displayed_single_movie", gson.toJson(movieData))
+        editor.apply()
+    }
+
+    fun getSingleMovieToDisplayFromSP() : MovieData {
+        val jsonInProcess: String = sp.getString("displayed_single_movie", "")!!
+        val type: Type = object : TypeToken<MovieData>() {}.type
+        if (jsonInProcess != "") {
+            return gson.fromJson(jsonInProcess, type)
+        }
+        return MovieData()
+    }
+
+
 //
 //    fun setPickedMovie(movieData : MovieData) {
 //        _pickedMoviesLiveData.value = movieData

@@ -1,7 +1,6 @@
 package huji.nati.moviebooster
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import huji.nati.moviebooster.ui.MoviePreviewItemHolder
@@ -10,9 +9,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviePreviewItemHolder>() {
 
     private val movieList : MutableList<MovieData> = mutableListOf()
 
-    private val generalImagesDirectoryPath by lazy {"https://image.tmdb.org/t/p/w500"}
-
-    var onImageClickCallback : ((MovieData) -> Unit)?= null
+    var onMovieClickListener : ((MovieData) -> Unit)?= null
 
     fun setItems(items : List<MovieData>) {
         movieList.clear()
@@ -28,27 +25,37 @@ class MoviesAdapter : RecyclerView.Adapter<MoviePreviewItemHolder>() {
         val context = parent.context
         val view = LayoutInflater.from(context)
             .inflate(R.layout.movie_preview_item, parent, false)
-        return MoviePreviewItemHolder(view)
 
+//        val holder = MoviePreviewItemHolder(view)
+//
+//        // the position of the item
+//        val position: Int = holder.adapterPosition
+//
+//        view.setOnClickListener {
+//            val callback = onMovieClickListener ?: return@setOnClickListener
+//            callback(movieList[position])
+//        }
+        return MoviePreviewItemHolder(view)
     }
 
     override fun onBindViewHolder(holder: MoviePreviewItemHolder, position: Int) {
-            val currentMovie = movieList[position]
+        val currentMovie = movieList[position]
 
-            holder.movieTitle.text = currentMovie.title
+        holder.movieTitle.text = currentMovie.title
 
-            // set the release date.
-            holder.setDateView(currentMovie.release_date)
+        // set the release date.
+        holder.setDateView(currentMovie.release_date)
 
-            // set the movie image
-            holder.setImageView(generalImagesDirectoryPath + currentMovie.poster_path)
+        // set the movie image
+        holder.setImageView(MovieBoosterApp.imagesDirectoryPath + currentMovie.poster_path)
 
-            // set the rating
-            holder.setRatingBar(currentMovie.vote_average)
+        // set the rating
+        holder.setRatingBar(currentMovie.vote_average)
 
-            holder.movieImage.setOnClickListener {
-                val callback = onImageClickCallback ?: return@setOnClickListener
-                callback(currentMovie)
-            }
+        // set on current view click listener
+        holder.itemView.setOnClickListener {
+            val callback = onMovieClickListener ?: return@setOnClickListener
+            callback(movieList[position])
+        }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="25dp"
+    android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
@@ -17,17 +17,16 @@
             android:layout_height="220dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo"
-            android:clickable="true"
-            android:focusable="true"/>
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/movieTitleTextView"
             android:layout_width="150dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView"
             android:layout_marginTop="5dp"
+            android:gravity="center"
             android:text="" />
 
 
@@ -36,9 +35,9 @@
             style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
+            android:theme="@style/RatingBar"
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toBottomOf="@id/movieTitleTextView" />
 
         <TextView
@@ -47,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text=""
+            android:textStyle="bold"
             android:layout_marginStart="5dp"
             app:layout_constraintStart_toEndOf="@id/ratingBar"
             app:layout_constraintEnd_toEndOf="@id/imageView"

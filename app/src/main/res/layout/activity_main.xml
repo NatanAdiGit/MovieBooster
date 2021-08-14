@@ -8,34 +8,6 @@
 
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineH0"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineH1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/logo"/>
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineV0"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineV1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
 
     <ImageView
         android:id="@+id/logo"
@@ -58,14 +30,5 @@
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:navGraph="@navigation/main_nav_graph" />
 
-<!--    <androidx.fragment.app.FragmentContainerView-->
-<!--        android:id="@+id/nav_host_fragment"-->
-<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintStart_toStartOf="@id/guidelineV0"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/logo"-->
-<!--        app:defaultNavHost="true"-->
-<!--        app:navGraph="@navigation/main_nav_graph" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

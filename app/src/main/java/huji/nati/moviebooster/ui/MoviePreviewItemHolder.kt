@@ -1,5 +1,6 @@
 package huji.nati.moviebooster.ui
 
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView

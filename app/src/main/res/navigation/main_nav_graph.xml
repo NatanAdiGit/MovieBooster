@@ -17,5 +17,18 @@
         android:id="@+id/movieListFragment"
         android:name="huji.nati.moviebooster.ui.MovieListFragment"
         android:label="movie_list_fragment"
-        tools:layout="@layout/movie_list_fragment" />
+        tools:layout="@layout/movie_list_fragment" >
+        <action
+            android:id="@+id/movie_list_to_single_movie_action"
+            app:destination="@id/singleMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleMovieFragment"
+        android:name="huji.nati.moviebooster.ui.SingleMovieFragment"
+        android:label="signle_movie_fragment"
+        tools:layout="@layout/signle_movie_fragment" >
+        <action
+            android:id="@+id/single_movie_to_movie_list_action"
+            app:destination="@id/movieListFragment" />
+    </fragment>
 </navigation>

@@ -43,7 +43,7 @@ class CallMostPopularMoviesWork(context: Context, workerParams : WorkerParameter
     override fun doWork(): Result {
 
         try {
-            val response = serverInterface.getTopRatedMovies().execute() // blocked until results
+            val response = serverInterface.getPopularMovieList().execute() // blocked until results
             if (response.body() == null) {
                 Log.e("null", "null")
             }
