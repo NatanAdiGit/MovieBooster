@@ -29,7 +29,11 @@ class MovieBoosterApp : Application(){
         lateinit var workManager : WorkManager
             private set
 
-        lateinit var imagesDirectoryPath : String
+        lateinit var dataBaseGeneralURL : String
+        private set
+
+        lateinit var imagesDirectoryGeneralURL : String
+        private set
     }
 
     override fun onCreate() {
@@ -39,7 +43,8 @@ class MovieBoosterApp : Application(){
         workManager = WorkManager.getInstance(this)
         sp = PreferenceManager.getDefaultSharedPreferences(this)
         gson = Gson()
-        imagesDirectoryPath = "https://image.tmdb.org/t/p/w500"
+        dataBaseGeneralURL = "https://api.themoviedb.org"
+        imagesDirectoryGeneralURL = "https://image.tmdb.org/t/p/w500"
 
     }
 
@@ -72,6 +77,21 @@ class MovieBoosterApp : Application(){
             return gson.fromJson(jsonInProcess, type)
         }
         return MovieData()
+    }
+
+    fun setAutoCompleteResultsToSP(newList : List<AutocompleteData>) {
+        val editor : SharedPreferences.Editor = sp.edit()
+        editor.putString("autocomplete_results", gson.toJson(newList))
+        editor.apply()
+    }
+
+    fun getAutoCompleteResultsFromSP() :  List<AutocompleteData> {
+        val jsonInProcess: String = sp.getString("autocomplete_results", "")!!
+        val type: Type = object : TypeToken<MutableList<AutocompleteData>>() {}.type
+        if (jsonInProcess != "") {
+            return gson.fromJson(jsonInProcess, type)
+        }
+        return listOf()
     }
 
 

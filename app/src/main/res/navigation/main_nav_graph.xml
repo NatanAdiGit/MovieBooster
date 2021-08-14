@@ -31,4 +31,9 @@
             android:id="@+id/single_movie_to_movie_list_action"
             app:destination="@id/movieListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="huji.nati.moviebooster.ui.SearchFragment"
+        android:label="search_fragment"
+        tools:layout="@layout/search_fragment" />
 </navigation>

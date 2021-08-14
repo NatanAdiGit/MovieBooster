@@ -47,7 +47,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviePreviewItemHolder>() {
         holder.setDateView(currentMovie.release_date)
 
         // set the movie image
-        holder.setImageView(MovieBoosterApp.imagesDirectoryPath + currentMovie.poster_path)
+        holder.setImageView(MovieBoosterApp.imagesDirectoryGeneralURL + currentMovie.poster_path)
 
         // set the rating
         holder.setRatingBar(currentMovie.vote_average)

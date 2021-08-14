@@ -48,7 +48,7 @@ class SingleMovieFragment : Fragment() {
         releaseDateTextView.text = currentMovie.release_date
         overViewTextView.text = currentMovie.overview
         ratingBar.rating = currentMovie.vote_average
-        Glide.with(view).load(MovieBoosterApp.imagesDirectoryPath +
+        Glide.with(view).load(MovieBoosterApp.imagesDirectoryGeneralURL +
                 currentMovie.poster_path).into(imageView)
 
         // set onClick for the goBack button

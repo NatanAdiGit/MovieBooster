@@ -12,11 +12,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+class CallAutoCompleteWork (context: Context, workerParams : WorkerParameters)
+    : Worker(context, workerParams) {
 
-class CallMostPopularMoviesWork(context: Context, workerParams : WorkerParameters)
-    : Worker(context, workerParams){
-
-    private val okHttpClient : OkHttpClient by lazy {
+    private val okHttpClient: OkHttpClient by lazy {
         val okHttpClientBuilder = OkHttpClient.Builder()
 
         if (BuildConfig.DEBUG) {
@@ -24,11 +23,10 @@ class CallMostPopularMoviesWork(context: Context, workerParams : WorkerParameter
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             okHttpClientBuilder.addInterceptor(interceptor)
         }
-
         return@lazy okHttpClientBuilder.build()
     }
 
-    private val retrofit : Retrofit by lazy {
+    private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(MovieBoosterApp.dataBaseGeneralURL)
@@ -36,21 +34,25 @@ class CallMostPopularMoviesWork(context: Context, workerParams : WorkerParameter
             .build()
     }
 
-    private val serverInterface by lazy {retrofit.create(MoviesServer::class.java)}
+    private val serverInterface by lazy { retrofit.create(MoviesServer::class.java) }
 
-    private val mainApp by lazy {MovieBoosterApp.instance}
+    private val mainApp by lazy { MovieBoosterApp.instance }
 
     override fun doWork(): Result {
         try {
-            val response = serverInterface.getPopularMovieList().execute() // blocked until results
-            val responseBody = response.body() ?: return Result.failure()
+            val query: String? = inputData.getString("query")
+            if (query != null) {
+                val response =
+                    serverInterface.getAutoCompleteList(query).execute() // blocked until results
+                val responseBody = response.body() ?: return Result.failure()
 
-            // set the displayed movies to be the most popular movies according to server.
-            mainApp.setDisplayedMovieListToSP(responseBody.results)
-            return Result.success()
-        }
-        catch (e : Exception) {
-            Log.e("exception", e.toString())
+                // set the displayed movies to be the most popular movies according to server.
+                mainApp.setDisplayedMovieListToSP(responseBody.results)
+                return Result.success()
+            }
+            else
+                return Result.failure()
+        } catch (e: Exception) {
             return Result.failure()
         }
     }
