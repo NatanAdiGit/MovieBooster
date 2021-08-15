@@ -9,13 +9,6 @@ import androidx.work.*
 import huji.nati.moviebooster.workers.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import huji.nati.moviebooster.BuildConfig
-import huji.nati.moviebooster.server.MoviesServer
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-//import huji.nati.moviebooster.MovieClient
 import java.lang.reflect.Type
 
 class MovieBoosterApp : Application(){
