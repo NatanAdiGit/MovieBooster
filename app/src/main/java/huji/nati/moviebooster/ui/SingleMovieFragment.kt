@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import huji.nati.moviebooster.R
 import huji.nati.moviebooster.viewmodels.SingleMovieViewModel
 import com.bumptech.glide.Glide
-import huji.nati.moviebooster.MovieBoosterApp
+import huji.nati.moviebooster.model.MovieBoosterApp
 
 class SingleMovieFragment : Fragment() {
 
@@ -48,7 +48,8 @@ class SingleMovieFragment : Fragment() {
         releaseDateTextView.text = currentMovie.release_date
         overViewTextView.text = currentMovie.overview
         ratingBar.rating = currentMovie.vote_average
-        Glide.with(view).load(MovieBoosterApp.imagesDirectoryGeneralURL +
+        Glide.with(view).load(
+            MovieBoosterApp.imagesDirectoryGeneralURL +
                 currentMovie.poster_path).into(imageView)
 
         // set onClick for the goBack button

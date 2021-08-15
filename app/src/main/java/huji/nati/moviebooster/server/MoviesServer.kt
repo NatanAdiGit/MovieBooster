@@ -8,7 +8,6 @@ interface MoviesServer {
     @GET("/3/movie/popular?api_key=8b5f74236568edb9ea59d41fce125d91")
     fun getPopularMovieList() : Call<JSONMovieDataResponse>
 
-    @GET("/3/movie/popular?api_key=8b5f74236568edb9ea59d41fce125d91")
-    fun getAutoCompleteList(@Query("query") query : String) : Call<JSONMovieDataResponse>
-
+    @GET("/3/search/keyword?api_key=8b5f74236568edb9ea59d41fce125d91&page=1")
+    fun getAutoCompleteList(@Query("query") query : String) : Call<JSONAutocompleteResponse>
 }

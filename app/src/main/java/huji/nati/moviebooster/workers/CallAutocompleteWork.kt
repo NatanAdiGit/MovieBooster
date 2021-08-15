@@ -1,11 +1,10 @@
 package huji.nati.moviebooster.workers
 
 import android.content.Context
-import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import huji.nati.moviebooster.BuildConfig
-import huji.nati.moviebooster.MovieBoosterApp
+import huji.nati.moviebooster.model.MovieBoosterApp
 import huji.nati.moviebooster.server.MoviesServer
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -46,8 +45,8 @@ class CallAutoCompleteWork (context: Context, workerParams : WorkerParameters)
                     serverInterface.getAutoCompleteList(query).execute() // blocked until results
                 val responseBody = response.body() ?: return Result.failure()
 
-                // set the displayed movies to be the most popular movies according to server.
-                mainApp.setDisplayedMovieListToSP(responseBody.results)
+                // set the autocomplete list movies according to server.
+                mainApp.postToAutocompleteLiveData(responseBody.results)
                 return Result.success()
             }
             else

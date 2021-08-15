@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import huji.nati.moviebooster.BuildConfig
-import huji.nati.moviebooster.MovieBoosterApp
+import huji.nati.moviebooster.model.MovieBoosterApp
 import huji.nati.moviebooster.server.MoviesServer
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,7 +38,7 @@ class CallMostPopularMoviesWork(context: Context, workerParams : WorkerParameter
 
     private val serverInterface by lazy {retrofit.create(MoviesServer::class.java)}
 
-    private val mainApp by lazy {MovieBoosterApp.instance}
+    private val mainApp by lazy { MovieBoosterApp.instance}
 
     override fun doWork(): Result {
         try {
@@ -46,7 +46,7 @@ class CallMostPopularMoviesWork(context: Context, workerParams : WorkerParameter
             val responseBody = response.body() ?: return Result.failure()
 
             // set the displayed movies to be the most popular movies according to server.
-            mainApp.setDisplayedMovieListToSP(responseBody.results)
+            mainApp.postToPopularListLiveData(responseBody.results)
             return Result.success()
         }
         catch (e : Exception) {

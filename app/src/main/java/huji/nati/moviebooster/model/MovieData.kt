@@ -1,4 +1,4 @@
-package huji.nati.moviebooster
+package huji.nati.moviebooster.model
 
 import java.io.Serializable
 

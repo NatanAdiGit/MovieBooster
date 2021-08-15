@@ -1,9 +1,12 @@
-package huji.nati.moviebooster
+package huji.nati.moviebooster.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import huji.nati.moviebooster.ui.MoviePreviewItemHolder
+import huji.nati.moviebooster.model.MovieBoosterApp
+import huji.nati.moviebooster.model.MovieData
+import huji.nati.moviebooster.R
+import huji.nati.moviebooster.ui.holders.MoviePreviewItemHolder
 
 class MoviesAdapter : RecyclerView.Adapter<MoviePreviewItemHolder>() {
 

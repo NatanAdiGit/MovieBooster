@@ -1,8 +1,8 @@
 package huji.nati.moviebooster.viewmodels
 
 import androidx.lifecycle.ViewModel
-import huji.nati.moviebooster.MovieBoosterApp
-import huji.nati.moviebooster.MovieData
+import huji.nati.moviebooster.model.MovieBoosterApp
+import huji.nati.moviebooster.model.MovieData
 
 class SingleMovieViewModel : ViewModel() {
 
