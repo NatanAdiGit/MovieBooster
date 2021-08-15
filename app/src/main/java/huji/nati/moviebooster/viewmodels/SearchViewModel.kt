@@ -10,12 +10,17 @@ class SearchViewModel : ViewModel() {
 
     private val mainApp by lazy { MovieBoosterApp.instance}
 
-    fun getAutocompleteLiveData() : LiveData<List<AutocompleteData>> {
-        return mainApp.autocompleteLiveData
+    fun getSearchMovieByQuery(query : String) {
+         mainApp.requestSearchMovieListByQuery(query)
     }
 
     fun getAutoCompleteByQuery(query : String) {
         mainApp.requestAutocompleteByQuery(query)
     }
+
+    fun getAutocompleteLiveData() : LiveData<List<AutocompleteData>> {
+        return mainApp.autocompleteLiveData
+    }
+
 
 }

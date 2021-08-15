@@ -46,7 +46,7 @@ class CallMostPopularMoviesWork(context: Context, workerParams : WorkerParameter
             val responseBody = response.body() ?: return Result.failure()
 
             // set the displayed movies to be the most popular movies according to server.
-            mainApp.postToPopularListLiveData(responseBody.results)
+            mainApp.postToDisplayedMovieListLiveData(responseBody.results)
             return Result.success()
         }
         catch (e : Exception) {

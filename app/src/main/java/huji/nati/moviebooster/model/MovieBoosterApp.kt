@@ -73,6 +73,24 @@ class MovieBoosterApp : Application(){
         }
     }
 
+    fun requestSearchMovieListByQuery(query : String)  {
+        try {
+            val workRequest = OneTimeWorkRequest.Builder(CallSearchMovieWork::class.java)
+                .setConstraints(
+                    Constraints.Builder()
+                        .setRequiredNetworkType(NetworkType.CONNECTED)
+                        .build()
+                )
+                .setInputData(
+                    Data.Builder()
+                        .putString("query", query)
+                        .build())
+                .build()
+            workManager.enqueue(workRequest)
+        } catch (e: Exception) {
+        }
+    }
+
     fun requestAutocompleteByQuery(query : String)  {
         try {
             val workRequest = OneTimeWorkRequest.Builder(CallAutoCompleteWork::class.java)
@@ -92,7 +110,7 @@ class MovieBoosterApp : Application(){
         }
     }
 
-    fun postToPopularListLiveData(lst : List<MovieData>) {
+    fun postToDisplayedMovieListLiveData(lst : List<MovieData>) {
         _displayedMovieListLiveData.postValue(lst)
     }
 

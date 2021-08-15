@@ -53,6 +53,7 @@ class MovieListFragment : Fragment() {
         movieListViewModel.getMoviesListLiveData().observe(viewLifecycleOwner, Observer {
             movieListViewModel.getMoviesListLiveData().value?.let { it1 -> adapter.setItems(it1) }
         })
+
     }
 
 }
