@@ -5,19 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
-
-
-
-
-<!--    <ImageView-->
-<!--        android:id="@+id/logo"-->
-<!--        android:layout_height="150dp"-->
-<!--        android:layout_width="250dp"-->
-<!--        android:src="@drawable/logo"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
-
+    <include layout="@layout/main_tool_bar"/>
 
 
     <androidx.fragment.app.FragmentContainerView
@@ -27,7 +15,8 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toTopOf="@layout/main_tool_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:navGraph="@navigation/main_nav_graph" />
 

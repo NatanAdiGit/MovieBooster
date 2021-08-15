@@ -6,11 +6,13 @@ import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import huji.nati.moviebooster.MovieListViewModel
 import huji.nati.moviebooster.R
 import huji.nati.moviebooster.model.AutocompleteData
 import huji.nati.moviebooster.viewmodels.SearchViewModel
@@ -19,6 +21,10 @@ class SearchFragment : Fragment() {
 
     private val searchViewModel: SearchViewModel by lazy {
         ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
+    }
+
+    private val movieListViewModel: MovieListViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MovieListViewModel::class.java)
     }
 
     private lateinit var adapter: ArrayAdapter<String>
@@ -47,14 +53,19 @@ class SearchFragment : Fragment() {
             addAutocompleteToAdapter(searchViewModel.getAutocompleteLiveData().value)
         })
 
-        //search_to_movie_list_action
-
+        // set on item click listener
         listView.setOnItemClickListener { _, _, position, _ ->
             val movieName : String = listView.getItemAtPosition(position).toString()
             searchViewModel.getSearchMovieByQuery(movieName)
             view.findNavController().navigate(R.id.search_to_movie_list_action)
         }
 
+        // make searchView clickable
+        searchView.setOnClickListener {
+            searchView.isIconified = false
+        }
+
+        // set the onChange anf on submit og the search bar
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null && newText.isNotEmpty()) {
@@ -71,29 +82,32 @@ class SearchFragment : Fragment() {
                     searchViewModel.getSearchMovieByQuery(query)
                     view.findNavController().navigate(R.id.search_to_movie_list_action)
                 }
+                else {
+                    movieListViewModel.getPopularMovieList()
+                    view.findNavController().navigate(R.id.search_to_movie_list_action)
+                }
                 return false
             }
         })
-    }
-//
-//    override fun onDestroyView() {
-//        val activity = activity as? MainActivity
-//        activity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-//        setHasOptionsMenu(false)
-//        super.onDestroyView()
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        val activity = activity as? MainActivity
-//        return when (item.itemId) {
-//            android.R.id.home -> {
-//                requireActivity().onBackPressed()
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 
+        // set the tool bar
+        val activity = activity as? MainActivity
+
+        activity?.title?.text = "Search"
+        activity?.searchImageView?.visibility = View.GONE
+        activity?.bachImageView?.visibility = View.VISIBLE
+        activity?.bachImageView?.setOnClickListener {
+            activity.onBackPressed()
+        }
+
+        activity?.homeImageView?.setOnClickListener {
+            view.findNavController().navigate(R.id.search_to_start_action)
+        }
+    }
+
+    /**
+     * Receives an autocomplete list and sets the adapter to hold the names.
+     */
     private fun addAutocompleteToAdapter(lst :List<AutocompleteData>?) {
         if (lst == null)
             return
@@ -103,6 +117,5 @@ class SearchFragment : Fragment() {
         }
         adapter.setNotifyOnChange(true)
     }
-
 
 }

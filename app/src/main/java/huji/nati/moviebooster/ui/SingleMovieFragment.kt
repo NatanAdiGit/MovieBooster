@@ -35,7 +35,6 @@ class SingleMovieFragment : Fragment() {
         val votingRateTextView : TextView = view.findViewById(R.id.votingRateTextView)
         val releaseDateTextView : TextView = view.findViewById(R.id.releaseDateTextView)
         val overViewTextView : TextView = view.findViewById(R.id.overViewTextView)
-        val goBackButton : ImageButton = view.findViewById(R.id.goBackButton)
         val imageView : ImageView = view.findViewById(R.id.imageView)
         val ratingBar : RatingBar = view.findViewById(R.id.ratingBar)
 
@@ -48,13 +47,22 @@ class SingleMovieFragment : Fragment() {
         releaseDateTextView.text = currentMovie.release_date
         overViewTextView.text = currentMovie.overview
         ratingBar.rating = currentMovie.vote_average
-        Glide.with(view).load(
-            MovieBoosterApp.imagesDirectoryGeneralURL +
-                currentMovie.poster_path).into(imageView)
+        Glide.with(view).
+        load(MovieBoosterApp.imagesDirectoryGeneralURL +
+                currentMovie.poster_path)
+            .error(Glide.with(imageView).load(R.drawable.logo))
+            .into(imageView)
 
-        // set onClick for the goBack button
-        goBackButton.setOnClickListener {
-            view.findNavController().navigate(R.id.single_movie_to_movie_list_action)
+        // set the tool bar
+        val activity = activity as? MainActivity
+        activity?.title?.text = currentMovie.title
+        activity?.searchImageView?.visibility = View.GONE
+        activity?.bachImageView?.visibility = View.VISIBLE
+        activity?.bachImageView?.setOnClickListener {
+            activity.onBackPressed()
+        }
+        activity?.homeImageView?.setOnClickListener {
+            view.findNavController().navigate(R.id.single_movie_to_start_action)
         }
     }
 

@@ -4,38 +4,33 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.work.WorkManager
 import huji.nati.moviebooster.R
+import huji.nati.moviebooster.model.MovieBoosterApp
 
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var searchImageView : ImageView
+    lateinit var bachImageView : ImageView
+    lateinit var homeImageView : ImageView
+    lateinit var title : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        // showing the back button in action bar
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        searchImageView = findViewById(R.id.searchIconView)
+        bachImageView = findViewById(R.id.backIconView)
+        homeImageView = findViewById(R.id.homeIconView)
+        title = findViewById(R.id.titleText)
+
+        title.text = MovieBoosterApp.appName
     }
-//
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        val inflater : MenuInflater = menuInflater
-//        inflater.inflate(R.menu.main_menu, menu)
-//        return true
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        val id: Int = item.itemId
-//        if (id == R.id.searchButton) {
-//            val
-//            val navController = findNavController(R.id.nav_host_fragment)
-//            navController.navigateUp()
-//            navController.navigate(R.id.searchFragment)
-//            return true
-//        }
-//        if (id == R.id.searchButton) {
-//            onBackPressed()
-//            return true
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
+
 }

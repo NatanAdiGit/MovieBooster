@@ -11,7 +11,8 @@
         tools:layout="@layout/start_screen_fragment" >
         <action
             android:id="@+id/start_to_movie_list_action"
-            app:destination="@id/movieListFragment" />
+            app:destination="@id/movieListFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/movieListFragment"
@@ -20,7 +21,16 @@
         tools:layout="@layout/movie_list_fragment" >
         <action
             android:id="@+id/movie_list_to_single_movie_action"
-            app:destination="@id/singleMovieFragment" />
+            app:destination="@id/singleMovieFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/movie_list_to_search_action"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/movie_list_to_start_action"
+            app:destination="@id/startScreenFragment"
+            app:enterAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/singleMovieFragment"
@@ -29,7 +39,12 @@
         tools:layout="@layout/signle_movie_fragment" >
         <action
             android:id="@+id/single_movie_to_movie_list_action"
-            app:destination="@id/movieListFragment" />
+            app:destination="@id/movieListFragment"
+            app:enterAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/single_movie_to_start_action"
+            app:destination="@id/startScreenFragment"
+            app:enterAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -38,6 +53,11 @@
         tools:layout="@layout/search_fragment" >
         <action
             android:id="@+id/search_to_movie_list_action"
-            app:destination="@id/movieListFragment" />
+            app:destination="@id/movieListFragment"
+            app:enterAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/search_to_start_action"
+            app:destination="@id/startScreenFragment"
+            app:enterAnim="@android:anim/slide_out_right" />
     </fragment>
 </navigation>

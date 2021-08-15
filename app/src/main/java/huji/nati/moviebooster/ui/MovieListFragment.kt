@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import huji.nati.moviebooster.MovieListViewModel
 import huji.nati.moviebooster.ui.adapters.MoviesAdapter
 import huji.nati.moviebooster.R
+import huji.nati.moviebooster.model.MovieBoosterApp
 
 
 class MovieListFragment : Fragment() {
@@ -21,7 +22,7 @@ class MovieListFragment : Fragment() {
         ViewModelProvider(requireActivity()).get(MovieListViewModel::class.java)
     }
 
-    val adapter: MoviesAdapter by lazy { MoviesAdapter() }
+    private val adapter: MoviesAdapter by lazy { MoviesAdapter() }
 
 
     override fun onCreateView(
@@ -54,6 +55,21 @@ class MovieListFragment : Fragment() {
             movieListViewModel.getMoviesListLiveData().value?.let { it1 -> adapter.setItems(it1) }
         })
 
+        // set the tool bar
+        val activity = activity as? MainActivity
+        activity?.title?.text = MovieBoosterApp.appName
+        activity?.searchImageView?.visibility = View.VISIBLE
+        activity?.bachImageView?.visibility = View.GONE
+        activity?.homeImageView?.visibility = View.VISIBLE
+
+
+        activity?.searchImageView?.setOnClickListener {
+            view.findNavController().navigate(R.id.movie_list_to_search_action)
+        }
+
+        activity?.homeImageView?.setOnClickListener {
+                view.findNavController().navigate(R.id.movie_list_to_start_action)
+            }
     }
 
 }

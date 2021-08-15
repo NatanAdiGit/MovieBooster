@@ -26,8 +26,10 @@ class StartScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // request for the initial movie list for display from view model
         movieListViewModel.getPopularMovieList()
 
+        // move forwards to home screen only if we got movies to display
         movieListViewModel.getMoviesListLiveData().observe(viewLifecycleOwner, Observer {
             view.findNavController().navigate(R.id.start_to_movie_list_action)
         })

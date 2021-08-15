@@ -9,9 +9,14 @@
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
+        android:queryHint="Insert your search here..."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/lightGrey2"
+        android:clickable="true"
+        android:focusable="true" />
+
 
     <ListView
         android:id="@+id/lvListView"

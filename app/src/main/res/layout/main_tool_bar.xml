@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/design_default_color_primary_dark">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+
+        <ImageView
+            android:id="@+id/backIconView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:textSize="20dp"
+            android:text="Movie Booster"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/backIconView"/>
+
+        <ImageView
+            android:id="@+id/searchIconView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_search_24"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/titleText"
+            android:paddingStart="30dp" />
+
+        <ImageView
+            android:id="@+id/homeIconView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_home_24"
+            android:layout_centerVertical="true"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.31"/>
+        app:layout_constraintGuide_percent="0.33"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineH4"
@@ -77,6 +77,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.55"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV4"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.13"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV5"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.87"/>
+
 
     <TextView
         android:id="@+id/titleTextView"
@@ -87,7 +101,7 @@
         android:textStyle="bold"
         android:layout_marginStart="5dp"
         app:layout_constraintTop_toTopOf="@+id/guidelineH0"
-        app:layout_constraintStart_toEndOf="@+id/goBackButton"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV0"
         app:layout_constraintEnd_toEndOf="@+id/guidelineV1"
         />
 
@@ -125,21 +139,65 @@
         app:layout_constraintEnd_toEndOf="@+id/guidelineV2" />
 
     <TextView
+        android:id="@+id/votingRateTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   Votes"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH2"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV3"
+        app:layout_constraintEnd_toStartOf="@+id/votesIcon"
+        android:textSize="17sp"
+        />
+
+    <ImageView
+        android:id="@+id/votesIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_baseline_how_to_vote_24"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH2"
+        app:layout_constraintStart_toEndOf="@+id/votingRateTitleTextView"
+        app:layout_constraintEnd_toEndOf="@id/guidelineV1"/>
+
+    <TextView
         android:id="@+id/votingRateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH2"
-        app:layout_constraintStart_toStartOf="@+id/guidelineV3"
+        app:layout_constraintTop_toBottomOf="@+id/votesIcon"        app:layout_constraintStart_toStartOf="@+id/guidelineV3"
         app:layout_constraintEnd_toEndOf="@+id/guidelineV1"
         />
+
+
+    <TextView
+        android:id="@+id/releaseDateTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Release Date   "
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH3"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV3"
+        app:layout_constraintEnd_toStartOf="@+id/dateIcon"
+        android:textSize="17sp"
+        />
+
+    <ImageView
+        android:id="@+id/dateIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/ic_baseline_date_range_24"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH3"
+        app:layout_constraintStart_toEndOf="@+id/releaseDateTitleTextView"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV1"/>
 
     <TextView
         android:id="@+id/releaseDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH3"
+        app:layout_constraintTop_toBottomOf="@+id/dateIcon"
         app:layout_constraintStart_toStartOf="@+id/guidelineV3"
         app:layout_constraintEnd_toEndOf="@+id/guidelineV1" />
 
@@ -147,19 +205,14 @@
         android:id="@+id/overViewTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constrainedWidth="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:text=""
-        app:layout_constraintTop_toTopOf="@+id/guidelineH4"
-        app:layout_constraintStart_toEndOf="@+id/guidelineV2"
         app:layout_constraintEnd_toEndOf="@+id/guidelineV1"
-        />
+        app:layout_constraintStart_toStartOf="@+id/guidelineV0"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH4"
 
-    <ImageButton
-        android:id="@+id/goBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_revert"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH0"
-        app:layout_constraintStart_toEndOf="@+id/guidelineV0"
-/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

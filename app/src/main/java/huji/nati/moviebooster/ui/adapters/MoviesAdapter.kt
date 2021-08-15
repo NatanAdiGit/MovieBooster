@@ -28,16 +28,6 @@ class MoviesAdapter : RecyclerView.Adapter<MoviePreviewItemHolder>() {
         val context = parent.context
         val view = LayoutInflater.from(context)
             .inflate(R.layout.movie_preview_item, parent, false)
-
-//        val holder = MoviePreviewItemHolder(view)
-//
-//        // the position of the item
-//        val position: Int = holder.adapterPosition
-//
-//        view.setOnClickListener {
-//            val callback = onMovieClickListener ?: return@setOnClickListener
-//            callback(movieList[position])
-//        }
         return MoviePreviewItemHolder(view)
     }
 

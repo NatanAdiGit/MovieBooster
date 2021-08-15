@@ -10,4 +10,6 @@ data class MovieData(
     var overview:String = "",
     var vote_average: Float = 0f,
     var vote_count: Int = 0
-) : Serializable {}
+) : Serializable {
+
+}
